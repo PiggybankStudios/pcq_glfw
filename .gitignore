@@ -26,6 +26,9 @@ GLFW.xcodeproj
 # macOS clutter
 .DS_Store
 
+# Sublime Text clutter
+*.sublime-workspace
+
 # Makefile generator clutter
 Makefile
 
@@ -49,7 +52,7 @@ docs/Doxyfile
 docs/html
 docs/warnings.txt
 docs/doxygen_sqlite3.db
-src/glfw_config.h
+# src/glfw_config.h
 src/glfw3.pc
 src/glfw3Config.cmake
 src/glfw3ConfigVersion.cmake

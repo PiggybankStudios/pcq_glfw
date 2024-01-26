@@ -866,6 +866,7 @@ struct _GLFWlibrary
     struct {
         GLFWmonitorfun  monitor;
         GLFWjoystickfun joystick;
+		GlfwDebugOutput_f* debugOutput;
     } callbacks;
 
     // These are defined in platform.h
@@ -1010,3 +1011,4 @@ void* _glfw_calloc(size_t count, size_t size);
 void* _glfw_realloc(void* pointer, size_t size);
 void _glfw_free(void* pointer);
 
+#include "debug.h"

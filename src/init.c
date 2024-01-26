@@ -404,13 +404,16 @@ void _glfwInputError(int code, const char* format, ...)
 //////                        GLFW public API                       //////
 //////////////////////////////////////////////////////////////////////////
 
-GLFWAPI int glfwInit(void)
+GLFWAPI int glfwInit(GlfwDebugOutput_f* debugOutputFunc)
 {
     if (_glfw.initialized)
         return GLFW_TRUE;
 
     memset(&_glfw, 0, sizeof(_glfw));
     _glfw.hints.init = _glfwInitHints;
+    _glfw.callbacks.debugOutput = debugOutputFunc;
+
+    GlfwWriteLine_I("GLFW Inititalizing...");
 
     _glfw.allocator = _glfwInitAllocator;
     if (!_glfw.allocator.allocate)
@@ -447,6 +450,7 @@ GLFWAPI int glfwInit(void)
     _glfw.initialized = GLFW_TRUE;
 
     glfwDefaultWindowHints();
+    GlfwWriteLine_I("GLFW Init Finished!");
     return GLFW_TRUE;
 }
 

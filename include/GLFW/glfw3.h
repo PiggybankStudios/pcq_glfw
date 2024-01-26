@@ -107,6 +107,8 @@ extern "C" {
  */
 #include <stdint.h>
 
+#include <stdbool.h>
+
 #if defined(GLFW_INCLUDE_VULKAN)
   #include <vulkan/vulkan.h>
 #endif /* Vulkan header */
@@ -2103,6 +2105,7 @@ typedef struct GLFWallocator
     void* user;
 } GLFWallocator;
 
+typedef void GlfwDebugOutput_f(const char* filePath, uint32_t lineNumber, const char* funcName, bool isError, bool newLine, const char* message);
 
 /*************************************************************************
  * GLFW API functions
@@ -2159,7 +2162,7 @@ typedef struct GLFWallocator
  *
  *  @ingroup init
  */
-GLFWAPI int glfwInit(void);
+GLFWAPI int glfwInit(GlfwDebugOutput_f* debugOutputFunc);
 
 /*! @brief Terminates the GLFW library.
  *
