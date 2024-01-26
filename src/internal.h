@@ -572,6 +572,7 @@ struct _GLFWwindow
         GLFWcharfun               character;
         GLFWcharmodsfun           charmods;
         GLFWdropfun               drop;
+        GLFWsystemeventfun        systemEvent; //Added by Taylor
     } callbacks;
 
     // This is defined in platform.h
@@ -932,6 +933,7 @@ void _glfwInputJoystick(_GLFWjoystick* js, int event);
 void _glfwInputJoystickAxis(_GLFWjoystick* js, int axis, float value);
 void _glfwInputJoystickButton(_GLFWjoystick* js, int button, char value);
 void _glfwInputJoystickHat(_GLFWjoystick* js, int hat, char value);
+void _glfwSystemEvent(_GLFWwindow* window, unsigned int uMsg, __int64 wParam, __int64 lParam);
 
 void _glfwInputMonitor(_GLFWmonitor* monitor, int action, int placement);
 void _glfwInputMonitorWindow(_GLFWmonitor* monitor, _GLFWwindow* window);

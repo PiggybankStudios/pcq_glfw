@@ -411,6 +411,14 @@ void _glfwInputDrop(_GLFWwindow* window, int count, const char** paths)
         window->callbacks.drop((GLFWwindow*) window, count, paths);
 }
 
+// Notifies shared code of system events
+//
+void _glfwSystemEvent(_GLFWwindow* window, unsigned int uMsg, __int64 wParam, __int64 lParam)
+{
+    if (window && window->callbacks.systemEvent)
+        window->callbacks.systemEvent((GLFWwindow*) window, uMsg, wParam, lParam);
+}
+
 // Notifies shared code of a joystick connection or disconnection
 //
 void _glfwInputJoystick(_GLFWjoystick* js, int event)
@@ -1024,6 +1032,17 @@ GLFWAPI GLFWdropfun glfwSetDropCallback(GLFWwindow* handle, GLFWdropfun cbfun)
 
     _GLFW_REQUIRE_INIT_OR_RETURN(NULL);
     _GLFW_SWAP(GLFWdropfun, window->callbacks.drop, cbfun);
+    return cbfun;
+}
+
+//Added by Taylor
+GLFWAPI GLFWsystemeventfun glfwSetSystemEventCallback(GLFWwindow* handle, GLFWsystemeventfun cbfun)
+{
+    _GLFWwindow* window = (_GLFWwindow*) handle;
+    assert(window != NULL);
+
+    _GLFW_REQUIRE_INIT_OR_RETURN(NULL);
+    _GLFW_SWAP(GLFWsystemeventfun, window->callbacks.systemEvent, cbfun);
     return cbfun;
 }
 

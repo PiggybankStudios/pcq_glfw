@@ -1934,6 +1934,23 @@ typedef void (* GLFWcharmodsfun)(GLFWwindow* window, unsigned int codepoint, int
  */
 typedef void (* GLFWdropfun)(GLFWwindow* window, int path_count, const char* paths[]);
 
+/*! @brief The function signature for system events callback
+ *
+ *  This is the function signature for system events callback
+ *
+ *  @param[in] window The window that received the event.
+ *  @param[in] uMsg
+ *  @param[in] wParam
+ *  @param[in] lParam
+ *
+ *  @sa @ref glfwSetSystemEventCallback
+ *
+ *  @since Added by Taylor Robbins for Princess Castle Quest
+ *
+ *  @ingroup input
+ */
+typedef void (* GLFWsystemeventfun)(GLFWwindow*,unsigned int,__int64,__int64);
+
 /*! @brief The function pointer type for monitor configuration callbacks.
  *
  *  This is the function pointer type for monitor configuration callbacks.
@@ -5360,6 +5377,31 @@ GLFWAPI GLFWscrollfun glfwSetScrollCallback(GLFWwindow* window, GLFWscrollfun ca
  *  @ingroup input
  */
 GLFWAPI GLFWdropfun glfwSetDropCallback(GLFWwindow* window, GLFWdropfun callback);
+
+/*! @brief Sets the system event callback.
+ *
+ *  This callback was added by Taylor
+ *
+ *  This function sets the system event callback, or removes the
+ *  currently set callback.  This is called when a system event is given to us by
+ *  the operating system (e.g. the winproc callback in windows)
+ *
+ *  This callback currently only works on Windows
+ *
+ *  @param[in] cbfun The new callback, or `NULL` to remove the currently set
+ *  callback.
+ *  @return The previously set callback, or `NULL` if no callback was set or the
+ *  library had not been [initialized](@ref intro_init).
+ *
+ *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED.
+ *
+ *  @thread_safety This function must only be called from the main thread.
+ *
+ *  @since Added in by Taylor Robbins for Princess Castle Quest
+ *
+ *  @ingroup input
+ */
+GLFWAPI GLFWsystemeventfun glfwSetSystemEventCallback(GLFWwindow* window, GLFWsystemeventfun cbfun);
 
 /*! @brief Returns whether the specified joystick is present.
  *

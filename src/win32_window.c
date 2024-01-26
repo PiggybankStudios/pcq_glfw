@@ -528,6 +528,10 @@ static void maximizeWindowManually(_GLFWwindow* window)
 static LRESULT CALLBACK windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     _GLFWwindow* window = GetPropW(hWnd, L"GLFW");
+    
+    //Added by Taylor
+    _glfwSystemEvent(window, uMsg, wParam, lParam);
+    
     if (!window)
     {
         if (uMsg == WM_NCCREATE)
